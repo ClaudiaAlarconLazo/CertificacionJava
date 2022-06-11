@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Cursos TI</title>
+	<link rel="shortcut icon" href="https://www.pngmart.com/files/21/Tech-PNG-Isolated-Pic.png" type="image/x-icon">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+	<link data-th-href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:insert="fragments/nav :: nav"></div>
+
+	<div class="container custom-max-height col-6">
+		<div class="card my-5 p-5">
+			<div id="title" class="text-center mt-3">
+				<h3>Registro de cuenta</h3>
+			</div>
+
+			<div class="row my-5">
+				<div class="col">
+					<form action="#" th:action="@{/guardar}" th:object="${estudiante}" method="post">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="userName">RUN</label>
+								<input id="userName" name="username" th:field="*{rut}" type="text"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="password">Contraseña</label>
+								<input id="password" name="password" th:field="*{password}" type="password"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="nombre">Nombre</label>
+								<input id="nombre" name="nombre" th:field="*{nombre}" type="text"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="edad">Edad</label>
+								<input id="edad" name="edad" th:field="*{edad}" type="number"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="Email">Correo electrónico</label>
+								<input id="Email" name="Email" th:field="*{email}" type="email"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="cel">Teléfono</label>
+								<input id="cel" name="cel" th:field="*{telefono}" type="text"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="Direccion">Dirección</label>
+								<input id="Direccion" name="Direccion" th:field="*{direccion}" type="text"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="Region">Región</label>
+								<select class="custom-select" id="Region" name="Region" th:field="*{idRegion}">
+									<option th:each="i : ${regiones}" th:value="${i.id}" th:text="${i.detalle}">
+									</option>
+								</select>
+							</div>
+						</div>
+
+						<button class="btn btn-primary" type="submit">Registrar</button>
+						<a class="btn btn-outline-dark bg-white text-dark" href="/admin" role="button">Cancelar</a>
+
+					</form>
+					<span style="color:red" th:text="${mensaje}"></span>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

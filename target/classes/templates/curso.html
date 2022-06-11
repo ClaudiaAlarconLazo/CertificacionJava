@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Cursos TI</title>
+	<link rel="shortcut icon" href="https://www.pngmart.com/files/21/Tech-PNG-Isolated-Pic.png" type="image/x-icon">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+	<link data-th-href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:insert="fragments/navOut :: nav"></div>
+
+	<div class="container custom-max-height">
+		<div class="card-deck my-5">
+			<div class="card">
+				<div id="id" class="card-header">
+					<h4 class="title">Detalle Curso</h4>
+				</div>
+
+				<div class="card-body">
+					<h5 th:text="${curso.getNombre()}" id="name" class="card-title"></h5>
+					<p th:text="${curso.getDescripcion()}" class="card-text"></p>
+				</div>
+				<div class="card-footer">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th width="35%" scope="row">Inicio</th>
+								<td>:</td>
+								<td th:text="${curso.getFecinicio()}"></td>
+							</tr>
+							<tr>
+								<th width="35%" scope="row">Fin</th>
+								<td>:</td>
+								<td th:text="${curso.getFectermino()}"></td>
+							</tr>
+							<tr>
+								<th width="35%" scope="row">Cupos totales</th>
+								<td>:</td>
+								<td th:text="${curso.getCupos()}"></td>
+							</tr>
+							<tr>
+								<th width="35%" scope="row">Cupos disponibles</th>
+								<td>:</td>
+								<td th:text="${cuposDisponibles}"></td>
+							</tr>
+						</tbody>
+					</table>
+					<a class="btn btn-primary mt-2 btn-block"
+						th:href="@{/asignarCurso/{id}(id=${curso.id})}">Postular</a>
+					<span style="color:red" th:text="${mensaje}"></span>
+				</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" th:src="@{${curso.imagen}}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Contenidos:</h5>
+					<div class="list-group list-group-flush">
+						<li class="list-group-item flex-column align-items-start" data-th-each="cont : ${contenidos}">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">[[${contStat.index + 1}]]. [[${cont.nombre}]]</h5>
+							</div>
+							<p class="mb-1">[[${cont.getDetalle()}]]</p>
+						</li>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<a class="btn btn-light" href="/home" role="button">Volver</a>
+
+	</div>
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

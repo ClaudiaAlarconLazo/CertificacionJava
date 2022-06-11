@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Cursos TI</title>
+	<link rel="shortcut icon" href="https://www.pngmart.com/files/21/Tech-PNG-Isolated-Pic.png" type="image/x-icon">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+	<link data-th-href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:insert="fragments/nav :: nav"></div>
+
+	<div class="container custom-max-height col-4">
+		<div class="card my-5 p-5">
+
+			<h2 class="form-signin-heading">Iniciar sesión</h2>
+			<div th:if="${param.error}" class="alert alert-danger">
+				Usuario y contraseña inválidos.
+			</div>
+			<div th:if="${param.logout}" class="alert alert-success">
+				Estás cerrando sesión.
+			</div>
+			<form class="form-signin my-5" method="POST" th:action="@{/login}">
+				<div class="form-group">
+					<label for="username">Usuario</label>
+					<input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required
+						autofocus>
+				</div>
+				<div class="form-group">
+					<label for="password">Contraseña</label>
+					<input type="password" id="password" name="password" class="form-control" placeholder="****"
+						required>
+				</div>
+				<button type="submit" class="btn btn-primary mt-3">Ingresar</button>
+			</form>
+			<a th:href="@{/registrate/}">Si no tienes una cuenta, regístrate.</a>
+		</div>
+	</div>
+
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

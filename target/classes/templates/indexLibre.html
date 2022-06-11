@@ -1,0 +1,60 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Cursos TI</title>
+	<link rel="shortcut icon" href="https://www.pngmart.com/files/21/Tech-PNG-Isolated-Pic.png" type="image/x-icon">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+	<link data-th-href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:insert="fragments/nav :: nav"></div>
+
+	<div class="container mt-5">
+		<h2>Bienvenido</h2>
+		<h4 class="lead mb-5">Aprende desde cero o especialízate en las áreas más demandadas del trabajo digital:
+			programación, blockchain, marketing digital, inglés.</h4>
+
+		<div class="card-columns">
+			<div class="card mb-3" data-th-each="cur : ${cursos}">
+				<img class="card-img-top" th:src="@{${cur.getImagen()}}" alt="Card image cap">
+				<div class="card-body ">
+					<h5 class="card-title">[[${cur.getNombre()}]]</h5>
+					<p class="card-text">[[${cur.getDescripcion()}]]</p>
+
+					<div class="text-center mt-5">
+						<a role="button" aria-pressed="true" class="btn btn-primary btn-block active"
+							th:href="@{/obtiene/{id}(id=${cur.id})}">Ver curso</a>
+					</div>
+
+				</div>
+				<div class="card-footer text-center">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm">
+								<p class="card-text"><small class="text-muted"><b>Inicio: </b>[[${cur.getFecinicio()}]]
+									</small></p>
+							</div>
+							<div class="col-sm">
+								<p class="card-text"><small class="text-muted"><b>Término:
+										</b>[[${cur.getFectermino()}]]
+									</small></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Cursos TI</title>
+	<link rel="shortcut icon" href="https://www.pngmart.com/files/21/Tech-PNG-Isolated-Pic.png" type="image/x-icon">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+	<link data-th-href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:insert="fragments/navOut :: nav"></div>
+
+	<div class="container custom-max-height col-6">
+		<div class="card my-5 p-5">
+			<div id="title" class="text-center mt-3">
+				<h3>Registro de curso</h3>
+			</div>
+
+			<div class="row my-5">
+				<div class="col">
+					<form action="#" th:action="@{/admin/guardarCurso}" th:object="${curso}" method="post">
+
+						<input id="idcurso" th:field="*{id}" type="hidden">
+
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="nombre">Nombre</label>
+								<input id="nombre" name="nombre" th:field="*{nombre}" type="text"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="imge">Imagen (URL)</label>
+								<input id="imge" name="imge" th:field="*{imagen}" type="text"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="fecIni">Fecha de Inicio</label>
+								<input id="fecIni" name="fecIni" th:field="*{fecinicio}" type="date"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="fecTerm">Fecha de Término</label>
+								<input id="fecTerm" name="fecTerm" th:field="*{fectermino}" type="date"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="cupos">Cupos</label>
+								<input id="cupos" name="cupos" th:field="*{cupos}" type="number"
+									class="form-control" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="desc">Descripción</label>
+								<textarea id="desc" name="desc" th:field="*{descripcion}" type="text"
+									class="form-control" required rows="3"></textarea>
+							</div>
+						</div>
+
+						<button class="btn btn-primary" type="submit">Guardar</button>
+						<a class="btn btn-outline-dark" href="/admin" role="button">Cancelar</a>
+					</form>
+					<span style="color:red" th:text="${mensaje}"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+</body>
+
+</html>
